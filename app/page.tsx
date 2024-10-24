@@ -21,21 +21,27 @@ const PowerCalculator = () => {
     // Add other properties as needed
 }
 
-  const [devices, setDevices] = useState<Device[]>(() => {
+const [devices, setDevices] = useState<Device[]>(() => {
+  if (typeof window !== 'undefined') { // Check if running in the browser
     const savedDevices = localStorage.getItem('powerCalculatorDevices');
     return savedDevices ? JSON.parse(savedDevices) : [
       { id: 1, name: 'Lodówka', power: 150, hoursPerDay: 24 },
       { id: 2, name: 'Telewizor', power: 100, hoursPerDay: 4 },
       { id: 3, name: 'Pralka', power: 2000, hoursPerDay: 2 },
     ];
-  });
+  }
+  return []; // Return an empty array if not in the browser
+});
 
   const [selectedDevice, setSelectedDevice] = useState('');
   const [customPower, setCustomPower] = useState('');
   const [customHours, setCustomHours] = useState('');
   const [energyPrice, setEnergyPrice] = useState(() => {
-    const savedPrice = localStorage.getItem('energyPrice');
-    return savedPrice ? parseFloat(savedPrice) : 0.85;
+    if (typeof window !== 'undefined') {
+      const savedPrice = localStorage.getItem('energyPrice');
+      return savedPrice ? parseFloat(savedPrice) : 0.85;
+    }
+    return 0.85; // Default value if not in the browser
   });
   // Function to remove a custom device
   const removeCustomDevice = (name: string) => {
@@ -46,8 +52,11 @@ const PowerCalculator = () => {
   const [customDeviceName, setCustomDeviceName] = useState('');
 
   const [customDevices, setCustomDevices] = useState<Device[]>(() => {
-    const savedCustomDevices = localStorage.getItem('customDevices');
-    return savedCustomDevices ? JSON.parse(savedCustomDevices) : [];
+    if (typeof window !== 'undefined') {
+      const savedCustomDevices = localStorage.getItem('customDevices');
+      return savedCustomDevices ? JSON.parse(savedCustomDevices) : [];
+    }
+    return []; // Return an empty array if not in the browser
   });
 
   const commonDevices = [
