@@ -335,7 +335,7 @@ const PowerCalculator = () => {
           {devices.map((device) => (
             <div
               key={device.id}
-              className="flex flex-col sm:flex-row items-center gap-4 p-4 bg-gray-50 rounded"
+              className="flex flex-col sm:flex-row items-center gap-8 p-4 bg-gray-50 rounded"
             >
               <span className="flex-1 font-medium">{device.name}</span>
               <div className="flex items-center gap-2">
@@ -343,12 +343,12 @@ const PowerCalculator = () => {
                   type="number"
                   value={device.power}
                   onChange={(e) => updatePower(device.id, e.target.value)}
-                  className="w-24 p-2 border rounded"
+                  className="w-32 p-2 border rounded"
                 />
                 <span className="text-gray-500">W</span>
               </div>
               <div className="flex items-center gap-2">
-                <Clock size={20} className="text-gray-500" />
+              
                 <input
                   type="number"
                   value={device.hoursPerDay}
@@ -356,14 +356,14 @@ const PowerCalculator = () => {
                   step="0.5"
                   min="0"
                   max="24"
-                  className="w-20 p-2 border rounded"
+                  className="w-24 p-2 border rounded"
                 />
-                <span className="text-gray-500">h</span>
+                <span className="text-gray-500">H</span>
               </div>
-              <div className="text-sm text-gray-500">
+              <div className="text-sm text-gray-500 w-24">
                 {calculateDeviceKWh(device).toFixed(2)} kWh/dzień
               </div>
-              <div className="text-sm text-gray-500">
+              <div className="text-sm text-gray-500 w-24">
                 {calculateDeviceCost(device).toFixed(2)} PLN/dzień
               </div>
               <button
