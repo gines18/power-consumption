@@ -11,7 +11,15 @@ const PowerCalculator = () => {
     name: string;
     defaultPower: number;
     defaultHours: number;
+    power?: number;
+    hoursPerDay?: number;
   }
+
+  interface DeviceType extends Device { // Extend DeviceType to include Device properties
+    id: number; // Example property
+    name: string; // Example property
+    // Add other properties as needed
+}
 
   const [devices, setDevices] = useState<Device[]>(() => {
     const savedDevices = localStorage.getItem('powerCalculatorDevices');
@@ -76,7 +84,7 @@ const PowerCalculator = () => {
       const newCustomDevice: Device = {
         id: Number(generateUniqueId()),
         name: customDeviceName,
-        defaultPower:  Number(customPower),
+        defaultPower:  Number(customPower) || 0,
         defaultHours: parseFloat(customHours) || 1
       };
       setCustomDevices([...customDevices, newCustomDevice]);
@@ -86,16 +94,18 @@ const PowerCalculator = () => {
     }
   };
 
-  const addDeviceToList = (device) => {
-    setDevices([
-      ...devices,
-      {
-        id: Math.max(...devices.map(d => d.id), 0) + 1,
-        name: device.name,
-        power: parseInt(customPower) || device.defaultPower,
-        hoursPerDay: parseFloat(customHours) || device.defaultHours
-      }
-    ]);
+  const addDeviceToList = (device: Device) => {
+    const newDevice: Device = {
+      id: Math.max(...devices.map(d => d.id), 0) + 1,
+      name: device.name,
+      power: parseInt(customPower) || device.defaultPower, // Use parsed customPower or defaultPower
+      hoursPerDay: parseFloat(customHours) || device.defaultHours, // Use parsed customHours or defaultHours
+      defaultPower: device.defaultPower || 0, // Provide a default value if necessary
+      defaultHours: device.defaultHours || 0,   // Provide a default value if necessary
+    };
+  
+    setDevices(prevDevices => [...prevDevices, newDevice]);
+  
     setSelectedDevice('');
     setCustomPower('');
     setCustomHours('');
@@ -109,7 +119,8 @@ const PowerCalculator = () => {
     } else if (selectedDevice) {
       const device = [...commonDevices, ...customDevices].find(d => d.name === selectedDevice);
       if (device) {
-        addDeviceToList(device);
+        const deviceWithId = { ...device, id: Number(generateUniqueId()) }; // Convert to number
+        addDeviceToList(deviceWithId);
       }
     }
   };
@@ -130,13 +141,16 @@ const PowerCalculator = () => {
     ));
   };
 
-  const calculateDeviceKWh = (device) => {
-    return (device.power * device.hoursPerDay) / 1000;
-  };
+  const calculateDeviceKWh = (device: Device) => {
+    if (device.power === undefined) {
+        return 0; // or handle the case as needed
+    }
+    return (device.power * (device.hoursPerDay ?? 0)) / 1000;
+};
 
-  const calculateDeviceCost = (device) => {
-    return calculateDeviceKWh(device) * energyPrice;
-  };
+const calculateDeviceCost = (device: DeviceType) => { // Specify the type of device
+  return calculateDeviceKWh(device) * energyPrice;
+};
 
   const dailyKWh = devices.reduce((sum, device) => sum + calculateDeviceKWh(device), 0);
   const dailyCost = dailyKWh * energyPrice;
