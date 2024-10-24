@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Plus, Trash2, Clock, Package } from "lucide-react";
+import { Plus, Trash2, Package } from "lucide-react";
 import {
   BarChart,
   Bar,
