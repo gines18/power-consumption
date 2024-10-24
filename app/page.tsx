@@ -64,15 +64,21 @@ const PowerCalculator = () => {
   ];
 
   useEffect(() => {
-    localStorage.setItem('powerCalculatorDevices', JSON.stringify(devices));
+    if (typeof window !== 'undefined') { // Check if running in the browser
+      localStorage.setItem('powerCalculatorDevices', JSON.stringify(devices));
+    }
   }, [devices]);
 
   useEffect(() => {
-    localStorage.setItem('energyPrice', energyPrice.toString());
+    if (typeof window !== 'undefined') { // Check if running in the browser
+      localStorage.setItem('energyPrice', energyPrice.toString());
+    }
   }, [energyPrice]);
 
   useEffect(() => {
-    localStorage.setItem('customDevices', JSON.stringify(customDevices));
+    if (typeof window !== 'undefined') { // Check if running in the browser
+      localStorage.setItem('customDevices', JSON.stringify(customDevices));
+    }
   }, [customDevices]);
 
   function generateUniqueId(): string {
