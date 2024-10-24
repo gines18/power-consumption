@@ -74,7 +74,7 @@ const PowerCalculator = () => {
   const addCustomDeviceToLibrary = () => {
     if (customDeviceName && customPower) {
       const newCustomDevice: Device = {
-        id: generateUniqueId(),
+        id: Number(generateUniqueId()),
         name: customDeviceName,
         defaultPower:  Number(customPower),
         defaultHours: parseFloat(customHours) || 1
