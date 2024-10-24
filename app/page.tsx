@@ -67,11 +67,16 @@ const PowerCalculator = () => {
     localStorage.setItem('customDevices', JSON.stringify(customDevices));
   }, [customDevices]);
 
+  function generateUniqueId(): string {
+    return 'id-' + Math.random().toString(36).substr(2, 9); // Example implementation
+}
+
   const addCustomDeviceToLibrary = () => {
     if (customDeviceName && customPower) {
-      const newCustomDevice = {
+      const newCustomDevice: Device = {
+        id: generateUniqueId(),
         name: customDeviceName,
-        defaultPower: parseInt(customPower),
+        defaultPower:  Number(customPower),
         defaultHours: parseFloat(customHours) || 1
       };
       setCustomDevices([...customDevices, newCustomDevice]);
