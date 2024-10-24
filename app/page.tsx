@@ -7,6 +7,7 @@ import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, CartesianGrid } from 'rec
 
 const PowerCalculator = () => {
   interface Device {
+    id: number;
     name: string;
     defaultPower: number;
     defaultHours: number;
