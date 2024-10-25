@@ -57,7 +57,7 @@ const PowerCalculator = () => {
   };
 
 
-  // Consolidate localStorage logic in a single useEffect
+
   
   // Consolidate localStorage logic in a single useEffect
   useEffect(() => {
@@ -224,7 +224,7 @@ const PowerCalculator = () => {
   return (
     <>
  <Hero />
-      <div className="w-full p-6">
+      <div className="w-full p-6" id="calculator">
         <div className="bg-green-300 rounded-lg shadow-md p-6">
           <h1 className="text-2xl font-bold mb-4">Kalkulator zużycia energii</h1>
 
