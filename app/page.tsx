@@ -224,7 +224,7 @@ const PowerCalculator = () => {
   return (
     <>
  <Hero />
-      <div className="flex lg:w-3/4 sm:w-full p-6">
+      <div className="w-full p-6">
         <div className="bg-green-300 rounded-lg shadow-md p-6">
           <h1 className="text-2xl font-bold mb-4">Kalkulator zużycia energii</h1>
 
