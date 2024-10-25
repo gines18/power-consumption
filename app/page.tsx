@@ -29,20 +29,21 @@ const PowerCalculator = () => {
     // Add other properties as needed
   }
 
-  const [devices, setDevices] = useState<Device[]>(() => {
+  const [devices, setDevices] = useState<Device[]>([]);
+
+  useEffect(() => {
     if (typeof window !== "undefined") {
-      // Check if running in the browser
       const savedDevices = localStorage.getItem("powerCalculatorDevices");
-      return savedDevices
+      const initialDevices = savedDevices
         ? JSON.parse(savedDevices)
         : [
             { id: 1, name: "Lodówka", power: 150, hoursPerDay: 24 },
             { id: 2, name: "Telewizor", power: 100, hoursPerDay: 4 },
             { id: 3, name: "Pralka", power: 2000, hoursPerDay: 2 },
           ];
+      setDevices(initialDevices);
     }
-    return []; // Return an empty array if not in the browser
-  });
+  }, []);
 
   const [selectedDevice, setSelectedDevice] = useState("");
   const [customPower, setCustomPower] = useState("");
@@ -50,7 +51,7 @@ const PowerCalculator = () => {
   const [energyPrice, setEnergyPrice] = useState(() => {
     if (typeof window !== "undefined") {
       const savedPrice = localStorage.getItem("energyPrice");
-      return savedPrice ? parseFloat(savedPrice) : 0.85;
+      return savedPrice ? parseFloat(savedPrice) : 1.22;
     }
     return 0.85; // Default value if not in the browser
   });
@@ -199,6 +200,23 @@ const PowerCalculator = () => {
   const dailyCost = dailyKWh * energyPrice;
   const monthlyCost = dailyCost * 30;
   const yearlyCost = dailyCost * 365;
+
+  const [chartWidth, setChartWidth] = useState(400); // Default width
+  const [chartHeight, setChartHeight] = useState(400); // Default height
+
+  useEffect(() => {
+    const handleResize = () => {
+      setChartWidth(window.innerWidth < 640 ? 300 : 400);
+      setChartHeight(window.innerWidth < 640 ? 400 : 400); // Adjust height as needed
+    };
+
+    handleResize(); // Set initial dimensions
+    window.addEventListener("resize", handleResize); // Update on resize
+
+    return () => {
+      window.removeEventListener("resize", handleResize); // Cleanup
+    };
+  }, []);
 
   const chartData = devices.map((device) => ({
     name: device.name,
@@ -406,11 +424,13 @@ const PowerCalculator = () => {
             </div>
           </div>
 
+
+
           <div className="bg-white p-4 rounded-lg">
             <h2 className="text-xl font-bold mb-4">Wykres zużycia energii</h2>
             <BarChart
-              width={window.innerWidth < 640 ? 300 : 400} // Adjust width based on screen size
-              height={window.innerWidth < 640 ? 400 : 400} // Adjust height based on screen size
+                 width={chartWidth} // Use state variable for width
+                 height={chartHeight} // Use state variable for height
               data={chartData}
               margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
             >
