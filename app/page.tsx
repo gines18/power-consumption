@@ -11,6 +11,7 @@ import {
   Legend,
   CartesianGrid,
 } from "recharts";
+import Hero from "./Hero/page"
 
 // Move interfaces outside of component
 interface Device {
@@ -221,9 +222,10 @@ const PowerCalculator = () => {
   }
 
   return (
- 
-      <div className="max-w-full mx-auto p-6 space-y-6">
-        <div className="bg-white rounded-lg shadow-md p-6">
+    <>
+ <Hero />
+      <div className="flex lg:w-3/4 sm:w-full p-6">
+        <div className="bg-green-300 rounded-lg shadow-md p-6">
           <h1 className="text-2xl font-bold mb-4">Kalkulator zużycia energii</h1>
 
           {/* Energy Price Input */}
@@ -400,34 +402,39 @@ const PowerCalculator = () => {
 
 
           <div className="bg-white p-4 rounded-lg">
-            <h2 className="text-xl font-bold mb-4">Wykres zużycia energii</h2>
-            <BarChart
-                 width={chartWidth} // Use state variable for width
-                 height={chartHeight} // Use state variable for height
-              data={chartData}
-              margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
-            >
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="name" angle={-45} textAnchor="end" height={100} />
-              <YAxis yAxisId="left" orientation="left" stroke="#8884d8" />
-              <YAxis yAxisId="right" orientation="right" stroke="#82ca9d" />
-              <Tooltip />
-              <Legend />
-              <Bar
-                yAxisId="left"
-                dataKey="Zużycie dzienne (kWh)"
-                fill="#8884d8"
-              />
-              <Bar
-                yAxisId="right"
-                dataKey="Koszt dzienny (PLN)"
-                fill="#82ca9d"
-              />
-            </BarChart>
-          </div>
+  <h2 className="text-xl font-bold mb-4">Wykres zużycia energii</h2>
+  {devices.length > 0 ? ( // Check if there are devices
+    <BarChart
+      width={chartWidth} // Use state variable for width
+      height={chartHeight} // Use state variable for height
+      data={chartData}
+      margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+    >
+      <CartesianGrid strokeDasharray="3 3" />
+      <XAxis dataKey="name" angle={-45} textAnchor="end" height={100} />
+      <YAxis yAxisId="left" orientation="left" stroke="#8884d8" />
+      <YAxis yAxisId="right" orientation="right" stroke="#82ca9d" />
+      <Tooltip />
+      <Legend />
+      <Bar
+        yAxisId="left"
+        dataKey="Zużycie dzienne (kWh)"
+        fill="#8884d8"
+      />
+      <Bar
+        yAxisId="right"
+        dataKey="Koszt dzienny (PLN)"
+        fill="#82ca9d"
+      />
+    </BarChart>
+  ) : (
+    <p className="text-gray-500">Brak urządzeń do wyświetlenia wykresu.</p> // Optional message when no devices
+  )}
+</div>
         </div>
       </div>
     </div>
+    </>
   );
 };
 
