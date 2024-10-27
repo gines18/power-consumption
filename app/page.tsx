@@ -7,6 +7,8 @@ import Solar_benefits from "./Solar_benefits/page";
 import Solar from "./Solar/page"
 import Stats from "./Solar_numbers/page";
 import Advantages from "./Advantages/page"
+import Steps from "./Steps/page";
+
 function Main() {
   return (
     <>
@@ -16,6 +18,7 @@ function Main() {
       <Solar />
       <Stats />
       <Advantages />
+      <Steps />
     </>
   );
 }
