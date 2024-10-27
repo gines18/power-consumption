@@ -7,7 +7,7 @@ export default function Stats() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
-           Odnawialne zródla energii w Polsce
+           Odnawialne zródła energii w Polsce
           </h2>
           <p className="mt-3 text-xl text-gray-500 sm:mt-4">
           Te statystyki pokazują, jak dynamicznie rozwija się sektor odnawialnych źródeł energii, co ma kluczowe znaczenie w walce ze zmianami klimatycznymi i dążeniu do zrównoważonego rozwoju.

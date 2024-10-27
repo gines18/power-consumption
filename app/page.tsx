@@ -8,6 +8,7 @@ import Solar from "./Solar/page"
 import Stats from "./Solar_numbers/page";
 import Advantages from "./Advantages/page"
 import Steps from "./Steps/page";
+import Contact from "./Contact/page";
 
 function Main() {
   return (
@@ -15,10 +16,11 @@ function Main() {
       <Hero />
       <PowerCalculator />
       <Solar_benefits />
-      <Solar />
-      <Stats />
       <Advantages />
+      <Solar />
       <Steps />
+      <Stats />
+      <Contact />
     </>
   );
 }
