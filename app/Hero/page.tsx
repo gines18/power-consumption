@@ -1,5 +1,7 @@
  import React from 'react'
 import Link from 'next/link';
+
+import Image from 'next/image';
  function Hero() {
    return (
      <>
@@ -29,7 +31,16 @@ import Link from 'next/link';
         </header>
       </div>
     </div>
-    <img src="mainphoto.jpg" alt="Leafs" className="w-full h-48 object-cover sm:h-screen sm:w-4/12"/>
+    <div className="relative w-full h-48 sm:h-screen sm:w-4/12">
+        <Image
+          src="/mainphoto.jpg"
+          alt="Leafs"
+          fill
+          className="object-cover"
+          priority
+          sizes="(max-width: 640px) 100vw, 33vw"
+        />
+      </div>
   </div>
   </>
    )
