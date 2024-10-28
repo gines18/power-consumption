@@ -1,6 +1,11 @@
 Kalkulator zuzycia energii 2024 Mario R
 
+[Deployed website](https://ekoenergia.club)
 Oblicz uzyta energie w domu
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/7f625a5d-b20d-4041-a1ae-e85c99c43d18/deploy-status)](https://app.netlify.com/sites/powerconsumption/deploys)
+
+
 
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
