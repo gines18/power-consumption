@@ -5,7 +5,6 @@ import { useForm } from '@formspree/react';
 
 function Contact() {
   const [state, handleSubmit] = useForm("manyqlwa"); // Your Formspree form ID
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
   if (state.succeeded) {
     return (
