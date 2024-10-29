@@ -22,11 +22,13 @@ import Image from 'next/image';
             
             <div className="w-20 h-2 bg-green-700 my-4"></div>
             <p className="text-xl mb-10">Dzięki naszemu unikalnemu kalkulatorowi energii możesz szybko obliczyć, jak wiele energii odnawialnej potrzebujesz, aby osiągnąć swoje cele ekologiczne i finansowe!</p>
+        
             <Link href="#calculator">
-            <button className="bg-green-500 text-white text-2xl font-medium px-4 py-2 rounded shadow">Oblicz</button>
+            <button className="bg-green-500 mr-1 text-white text-2xl font-medium px-4 py-2 rounded shadow">Oblicz</button>
             </Link>
-            
-            
+            <Link href="/Blog">
+              <button className="bg-green-500 text-white text-2xl font-medium px-4 py-2 rounded shadow">Blog</button>
+            </Link>
           </div>
         </header>
       </div>
