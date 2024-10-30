@@ -6,7 +6,7 @@ import {PortableText} from '@portabletext/react'
 import Image from "next/image";
 import  { ColorComponent } from "../portableTextComponents.js";
 import type { PortableTextBlock } from '@portabletext/types';
-import { Params } from 'next/dist/shared/lib/router/utils/route-matcher'
+
 const POST_QUERY = `*[_type == "post" && slug.current == $slug][0]`;
 
 const { projectId, dataset } = client.config();
@@ -53,7 +53,7 @@ const components = {
 export default async function PostPage({
   params,
 }: {
-  params: Params
+  params: { slug: string }
 }) {
   interface Post {
     title: string;
