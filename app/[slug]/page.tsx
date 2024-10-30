@@ -19,15 +19,14 @@ const options = { next: { revalidate: 30 } };
 
 const SanityImage = ({ value }: { value: SanityImageSource & { alt?: string } }) => {
   const imageUrl = urlFor(value)?.width(800).url();
-
- 
-
   return (
     <Image
       src={imageUrl || ''}
       alt={value.alt || ' '}
       className="rounded-lg my-6"
-      loading="lazy"
+      width={800}
+      height={300}
+      priority
     />
   );
 };
