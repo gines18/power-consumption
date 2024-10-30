@@ -1,4 +1,3 @@
-import {type SanityDocument } from "next-sanity";
 import imageUrlBuilder from "@sanity/image-url";
 import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { client } from "../sanity/client";
@@ -6,6 +5,7 @@ import Link from "next/link";
 import {PortableText} from '@portabletext/react'
 import Image from "next/image";
 import  { ColorComponent } from "../portableTextComponents.js";
+import type { PortableTextBlock } from '@portabletext/types';
 
 const POST_QUERY = `*[_type == "post" && slug.current == $slug][0]`;
 
@@ -58,7 +58,7 @@ export default async function PostPage({
   interface Post {
     title: string;
     publishedAt: string;
-    body: any;
+    body: PortableTextBlock[];
     image?: SanityImageSource;
   }
   const resolvedParams = await params;
