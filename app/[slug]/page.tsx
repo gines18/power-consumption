@@ -17,7 +17,7 @@ const urlFor = (source: SanityImageSource) =>
 
 const options = { next: { revalidate: 30 } };
 
-const SanityImage = ({ value }: { value: any }) => {
+const SanityImage = ({ value }: { value: SanityImageSource & { alt?: string } }) => {
   const imageUrl = urlFor(value)?.width(800).url();
   return (
     <Image
@@ -36,7 +36,7 @@ const components = {
     image: SanityImage,
   },
   marks: {
-    color: ({ children, value }: { children: React.ReactNode; value?: any }) => (
+    color: ({ children, value }: { children: React.ReactNode; value?: { hex: string } }) => (
       <ColorComponent value={value}>{children}</ColorComponent>
     )
   },
@@ -55,8 +55,14 @@ export default async function PostPage({
 }: {
   params: { slug: string };
 }) {
+  interface Post {
+    title: string;
+    publishedAt: string;
+    body: any; // Adjust this type based on the actual structure of your body content
+    image?: SanityImageSource; // Optional if the image might not be present
+  }
   const resolvedParams = await params;
-  const post = await client.fetch<SanityDocument>(
+  const post = await client.fetch<Post>(
     POST_QUERY, 
     { slug: resolvedParams.slug }, 
     options
