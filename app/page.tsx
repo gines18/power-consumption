@@ -4,7 +4,7 @@ import Hero from "./Hero/page";
 import React from "react";
 import PowerCalculator from "./App_calkulator/page";
 import Solar_benefits from "./Solar_benefits/page";
-import Solar from "./Solar/page"
+// import Solar from "./Solar/page"
 import Stats from "./Solar_numbers/page";
 import Advantages from "./Advantages/page"
 import Steps from "./Steps/page";
@@ -17,7 +17,7 @@ function Main() {
       <PowerCalculator />
       <Solar_benefits />
       <Advantages />
-      <Solar />
+      {/* <Solar /> */}
       <Steps />
       <Stats />
       <Contact />
