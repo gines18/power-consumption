@@ -6,7 +6,7 @@ import Link from "next/link";
 import {PortableText} from '@portabletext/react'
 import Image from "next/image";
 import  { ColorComponent } from "../portableTextComponents.js";
-
+import { Metadata } from 'next'
 const POST_QUERY = `*[_type == "post" && slug.current == $slug][0]`;
 
 const { projectId, dataset } = client.config();
@@ -58,18 +58,36 @@ const components = {
     blockquote: ({ children }: { children?: React.ReactNode }) => <blockquote>{children}</blockquote>,
   }
 };
-
-export default async function PostPage({
-  params,
-}: {
-  params: { slug: string };
-}) {
-  const resolvedParams = await params;
+export async function generateMetadata(
+  { params }: PageProps
+): Promise<Metadata> {
   const post = await client.fetch<SanityDocument>(
     POST_QUERY, 
-    { slug: resolvedParams.slug }, 
+    { slug: params.slug },
     options
   );
+
+  return {
+    title: post?.title || 'Post',
+    description: post?.excerpt || '',
+  }
+}
+interface PageProps {
+  params: { slug: string }
+  searchParams: { [key: string]: string | string[] | undefined }
+}
+
+  export default async function PostPage({
+    params,
+    searchParams, // Add this even if you don't use it
+  }: PageProps) {
+    const resolvedParams = params; // Remove the await since params is already resolved
+    const post = await client.fetch<SanityDocument>(
+      POST_QUERY, 
+      { slug: resolvedParams.slug }, 
+      options
+    );
+    
   if (!post) {
     // Handle the case when no post is found
     return (
@@ -87,6 +105,7 @@ export default async function PostPage({
     ? urlFor(post.image)?.width(550).height(310).url()
     : null;
 
+    
   return (
     <main className="container mx-auto min-h-screen max-w-3xl p-8 flex flex-col gap-4">
       <Link href="/Blog" className="hover:underline">
