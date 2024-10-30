@@ -50,11 +50,15 @@ const components = {
   }
 };
 
+interface PageProps {
+  params: {
+    slug: string;
+  };
+}
+
 export default async function PostPage({
   params,
-}: {
-  params: { slug: string }
-}) {
+}: PageProps) { // Use the newly defined PageProps interface
   interface Post {
     title: string;
     publishedAt: string;
@@ -67,6 +71,7 @@ export default async function PostPage({
     { slug: params.slug }, 
     options
   );
+
   if (!post) {
     // Handle the case when no post is found
     return (
