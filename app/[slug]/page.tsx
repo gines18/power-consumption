@@ -58,8 +58,8 @@ export default async function PostPage({
   interface Post {
     title: string;
     publishedAt: string;
-    body: any; // Adjust this type based on the actual structure of your body content
-    image?: SanityImageSource; // Optional if the image might not be present
+    body: any;
+    image?: SanityImageSource;
   }
   const resolvedParams = await params;
   const post = await client.fetch<Post>(
