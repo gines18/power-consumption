@@ -19,6 +19,9 @@ const options = { next: { revalidate: 30 } };
 
 const SanityImage = ({ value }: { value: SanityImageSource & { alt?: string } }) => {
   const imageUrl = urlFor(value)?.width(800).url();
+
+ 
+
   return (
     <Image
       src={imageUrl || ''}
@@ -29,12 +32,21 @@ const SanityImage = ({ value }: { value: SanityImageSource & { alt?: string } })
   );
 };
 
+interface ColorMarkDefinition {
+  hex: string;
+  alpha?: number;
+  _type: 'color';
+}
+
 const components = {
   types: {
     image: SanityImage,
   },
   marks: {
-    color: ({ children, value }: { children: React.ReactNode; value?: any }) => (
+    color: ({ children, value }: { 
+      children: React.ReactNode; 
+      value?: ColorMarkDefinition 
+    }) => (
       <ColorComponent value={value}>{children}</ColorComponent>
     )
   },
