@@ -61,10 +61,10 @@ export default async function PostPage({
     body: PortableTextBlock[];
     image?: SanityImageSource;
   }
-  const resolvedParams = await params;
+
   const post = await client.fetch<Post>(
     POST_QUERY, 
-    { slug: resolvedParams.slug }, 
+    { slug: params.slug }, 
     options
   );
   if (!post) {
