@@ -58,7 +58,7 @@ interface PageProps {
 
 export default async function PostPage({
   params,
-}: PageProps) { // Use the newly defined PageProps interface
+}: PageProps): Promise<JSX.Element> { // Ensure the return type is a Promise of JSX.Element
   interface Post {
     title: string;
     publishedAt: string;
@@ -76,8 +76,8 @@ export default async function PostPage({
     // Handle the case when no post is found
     return (
       <main className="container mx-auto min-h-screen max-w-3xl p-8 flex flex-col gap-4">
-      <Link href="/Blog" className="hover:underline">
-        ← Back to posts
+        <Link href="/Blog" className="hover:underline">
+          ← Back to posts
         </Link>
         <h1 className="text-4xl font-bold mb-8">Post not found</h1>
         <p>Sorry, the requested post could not be found.</p>
