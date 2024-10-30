@@ -7,6 +7,7 @@ import Image from "next/image";
 import  { ColorComponent } from "../portableTextComponents.js";
 import type { PortableTextBlock } from '@portabletext/types';
 
+
 const POST_QUERY = `*[_type == "post" && slug.current == $slug][0]`;
 
 const { projectId, dataset } = client.config();
@@ -50,25 +51,31 @@ const components = {
   }
 };
 
+
 interface PageProps {
-  params: {
-    slug: string;
-  };
-}
+
+    params: Promise<{
+        slug: string; // Ensure this is correctly typed
+    }>; // Changed from object to Promise
+  }
+
 
 export default async function PostPage({
   params,
 }: PageProps): Promise<JSX.Element> { // Ensure the return type is a Promise of JSX.Element
+  const { slug } = await params; // Get slug directly from params
+
   interface Post {
     title: string;
     publishedAt: string;
-    body: PortableTextBlock[];
-    image?: SanityImageSource;
+    body: PortableTextBlock[]; // Adjust this based on your actual data structure
+    image?: SanityImageSource; // Optional if the image might not exist
   }
 
+  // Fetch post data directly
   const post = await client.fetch<Post>(
     POST_QUERY, 
-    { slug: params.slug }, 
+    { slug }, 
     options
   );
 
