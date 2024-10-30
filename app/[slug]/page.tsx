@@ -4,7 +4,7 @@ import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { client } from "../sanity/client";
 import Link from "next/link";
 import {PortableText} from '@portabletext/react'
-
+import Image from "next/image";
 import  { ColorComponent } from "../portableTextComponents.js";
 
 const POST_QUERY = `*[_type == "post" && slug.current == $slug][0]`;
@@ -20,11 +20,13 @@ const options = { next: { revalidate: 30 } };
 const SanityImage = ({ value }: { value: any }) => {
   const imageUrl = urlFor(value)?.width(800).url();
   return (
-    <img
-      src={imageUrl}
+    <Image
+      src={imageUrl || ''}
       alt={value.alt || ' '}
       className="rounded-lg my-6"
-      loading="lazy"
+      height="300"
+      width="600"
+      priority
     />
   );
 };
@@ -63,8 +65,8 @@ export default async function PostPage({
     // Handle the case when no post is found
     return (
       <main className="container mx-auto min-h-screen max-w-3xl p-8 flex flex-col gap-4">
-        <Link href="/Blog" className="hover:underline">
-          ← Back to posts
+      <Link href="/Blog" className="hover:underline">
+        ← Back to posts
         </Link>
         <h1 className="text-4xl font-bold mb-8">Post not found</h1>
         <p>Sorry, the requested post could not be found.</p>
@@ -82,7 +84,7 @@ export default async function PostPage({
         ← Wróć do postów
       </Link>
       {postImageUrl && (
-        <img
+        <Image
           src={postImageUrl}
           alt={post.title}
           className="aspect-video rounded-xl"
