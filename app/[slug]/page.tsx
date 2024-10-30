@@ -4,7 +4,7 @@ import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { client } from "../sanity/client";
 import Link from "next/link";
 import {PortableText} from '@portabletext/react'
-
+import Image from "next/image";
 import  { ColorComponent } from "../portableTextComponents.js";
 
 const POST_QUERY = `*[_type == "post" && slug.current == $slug][0]`;
@@ -17,11 +17,11 @@ const urlFor = (source: SanityImageSource) =>
 
 const options = { next: { revalidate: 30 } };
 
-const SanityImage = ({ value }: { value: any }) => {
+const SanityImage = ({ value }: { value: SanityImageSource & { alt?: string } }) => {
   const imageUrl = urlFor(value)?.width(800).url();
   return (
-    <img
-      src={imageUrl}
+    <Image
+      src={imageUrl || ''}
       alt={value.alt || ' '}
       className="rounded-lg my-6"
       loading="lazy"

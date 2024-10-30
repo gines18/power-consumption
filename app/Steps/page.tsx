@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image';
 
 function Steps() {
   const data = [
@@ -52,7 +53,7 @@ function Steps() {
           </div>
         ))}
       </div>
-      <img className="lg:w-3/5 md:w-1/2 object-cover object-center rounded-lg md:mt-0 mt-12" src="solar_steps.jpg" alt="panele fotowoltaiczne"/>
+      <Image className="lg:w-3/5 object-cover object-center rounded-lg md:mt-0 mt-12" src="/solar_steps.jpg" alt="panele fotowoltaiczne" width={800} height={400}/>
     </div>
   </div>
 </section>
