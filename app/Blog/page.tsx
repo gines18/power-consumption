@@ -15,20 +15,27 @@ export default async function IndexPage() {
 
   return (
     <main className="container mx-auto min-h-screen max-w-3xl p-8">
-       <Link href="/" className="hover:underline">
-        ← Strona główna
-      </Link>
-      <h1 className="text-4xl font-bold my-8">Lista blogów</h1>
-      <ul className="flex flex-col gap-y-4">
-        {posts.map((post) => (
-          <li className="hover:underline" key={post._id}>
-            <Link href={`/${post.slug.current}`}>
-              <h2 className="text-xl font-semibold">{post.title}</h2>
-              <p>{new Date(post.publishedAt).toLocaleDateString()}</p>
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </main>
+    <Link href="/" className="hover:underline">
+      ← Strona główna
+    </Link>
+    <h1 className="text-4xl font-bold my-8">Lista blogów</h1>
+    <ul className="flex flex-col gap-y-4">
+      {posts.map((post) => (
+        <li 
+          className="group hover:bg-gray-50 p-4 rounded-lg transition-colors duration-200" 
+          key={post._id}
+        >
+          <Link href={`/${post.slug.current}`}>
+            <h2 className="text-xl font-semibold group-hover:text-blue-600 transition-colors">
+              {post.title}
+            </h2>
+            <p className="text-gray-600">
+              {new Date(post.publishedAt).toLocaleDateString()}
+            </p>
+          </Link>
+        </li>
+      ))}
+    </ul>
+  </main>
   );
 }
