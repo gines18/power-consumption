@@ -11,6 +11,7 @@
   "dependencies": {
     "@formspree/react": "^2.5.1",
     "@sanity/image-url": "^1.0.2",
+    "flowbite-react": "^0.10.2",
     "lucide-react": "^0.453.0",
     "next": "15.0.1",
     "next-sanity": "^9.8.8",

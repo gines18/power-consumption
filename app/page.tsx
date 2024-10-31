@@ -9,6 +9,7 @@ import Stats from "./Solar_numbers/page";
 import Advantages from "./Advantages/page"
 import Steps from "./Steps/page";
 import Contact from "./Contact/page";
+import Info from "./Info/page";
 
 function Main() {
   return (
@@ -19,6 +20,7 @@ function Main() {
       <Advantages />
       {/* <Solar /> */}
       <Steps />
+      <Info />
       <Stats />
       <Contact />
     </>
