@@ -10,6 +10,9 @@ import Advantages from "./Advantages/page"
 import Steps from "./Steps/page";
 import Contact from "./Contact/page";
 import Info from "./Info/page";
+import Meeting from "./Appointment/page";
+// import AppointmentScheduler from './Tailwind_form/page'
+// import Payment from "./Payments/page";
 
 function Main() {
   return (
@@ -22,6 +25,9 @@ function Main() {
       <Steps />
       <Info />
       <Stats />
+      <Meeting />
+      {/* <AppointmentScheduler />   */}
+      {/* <Payment /> */}
       <Contact />
     </>
   );

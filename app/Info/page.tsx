@@ -12,7 +12,7 @@ function Info() {
             </Link> 
         </div>
         <div className="hidden lg:mt-0 lg:col-span-5 lg:flex">
-            <img src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/hero/phone-mockup.png" alt="mockup"/>
+            <img src="fotowoltaika black and white colour.png" alt="fotowoltaika black and white colour"/>
         </div>                
     </div>
 </section>

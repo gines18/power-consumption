@@ -10,7 +10,7 @@ import Image from 'next/image';
       <div className="container mx-auto h-full sm:p-10">
         <nav className="flex px-4 justify-between items-center">
           <div className="text-4xl font-bold">
-            SolarPowered<span className="text-green-700">.</span>
+            Solar<span className="text-green-700">Powered</span>
           </div>
         </nav>
         <header className="container px-4 lg:flex mt-10 items-center h-full lg:mt-0">

@@ -18,7 +18,8 @@ export default async function IndexPage() {
     <Link href="/" className="hover:underline">
       ← Strona główna
     </Link>
-    <h1 className="text-4xl font-bold my-8">Lista blogów</h1>
+    <h1 className="text-4xl font-bold my-8">Solar<span className="text-green-700">Powered</span> Blog</h1>
+    <h4 className="text-s font-bold my-8">Odkryj najnowsze innowacje i porady dotyczące energii słonecznej w moim najnowszym poście na blogu, które pomogą Ci skutecznie i zrównoważenie wykorzystać energię słońca.</h4>
     <ul className="flex flex-col gap-y-4">
       {posts.map((post) => (
         <li 
