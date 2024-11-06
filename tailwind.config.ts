@@ -9,6 +9,10 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      colors: {
+        'custom-gray': '#E4E1E4', // Add your custom color here
+        'custom-green': '#3D5D6D'
+      },
     },
   },
   plugins: [
