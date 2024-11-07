@@ -12,7 +12,6 @@ import Contact from "./Contact/page";
 import Info from "./Info/page";
 // import Meeting from "./Appointment/page";
 // import AppointmentScheduler from './Tailwind_form/page'
-// import Payment from "./Payments/page";
 // import Baner from "./Top_baner/page";
 
 function Main() {
@@ -28,7 +27,6 @@ function Main() {
       <Stats />
       {/* <Meeting /> */}
       {/* <AppointmentScheduler />   */}
-      {/* <Payment /> */}
       {/* <Baner /> */}
       <Contact />
     </>
